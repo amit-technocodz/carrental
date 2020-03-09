@@ -1,0 +1,50 @@
+<div class="prtm-content">
+    <form [formGroup]="CarTypeForm">
+      <div class="table-style">
+        <div class="row">
+          <div class="prtm-page-bar">
+            <div class="col-lg-4 col-xs-12">
+              <ul class="breadcrumb">
+                <li class="breadcrumb-item text-capitalize">
+                  <h2>Add CarType</h2>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+  
+        <div class="row">
+          <div class="col-md-6 col-xs-6">
+            <div class="prtm-full-block tables-margin outer-border-none">
+              <div class="prtm-block-content">
+                <div class="row">
+                  <div class="col-md-12 col-xs-12 mrgn-b-lg">
+                    <label>Name</label>
+                    <input type="text" class="form-control" placeholder="CarType Name" formControlName="Name" 
+                    [ngClass]="CarTypeForm.controls['Name'].untouched || (CarTypeForm.controls['Name'].touched && CarTypeForm.controls['Name'].valid) ? 'valid':'notvalid'"/> 
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12 col-xs-12 mrgn-b-lg">
+                    <label>CarType Image</label>
+                    <div class="drop-section">
+                        <dropzone  [message]="'Click or drag images here to upload'"  (success)="imageUpload($event)"></dropzone> 
+                        <a class="btn btn-light reset-btn" (click)="resetDropzoneUploads()">Reset</a>
+                    </div>
+        
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+      </div>
+      <div class="row">
+        <div class="col-lg-12">
+          <button class="btn cancel-btn" [routerLink]="['/admin']">Cancel</button>
+          <button class="btn add-btn" (click)="onSubmit()">Add</button>
+        </div>
+      </div>
+    </form>
+  </div>

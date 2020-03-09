@@ -1,0 +1,168 @@
+<div class="prtm-content">
+  <form [formGroup]="RouterFormdata">
+    <div class="table-style">
+      <div class="row">
+        <div class="prtm-page-bar">
+          <div class="col-lg-4 col-xs-12">
+            <ul class="breadcrumb">
+              <li class="breadcrumb-item text-capitalize">
+                <h2>Car Rental</h2>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-10 col-xs-10">
+          <div class="prtm-full-block tables-margin outer-border-none">
+            <div class="prtm-block-content">
+              <div class="row">
+                <div class="col-md-4 col-xs-4 mrgn-b-lg">
+                  <label>Registerd Car</label>
+                  <select class="form-control" formControlName="CarRegistrationId" (change)="Filterprice($event);getDisabledDates();"
+                    [ngClass]="RouterFormdata.controls['CarRegistrationId'].untouched || (RouterFormdata.controls['CarRegistrationId'].touched && RouterFormdata.controls['CarRegistrationId'].valid) ? 'valid':'notvalid'">
+                    <option *ngFor="let rescar of allCarRegistration" value="{{rescar.Id}}">
+                      {{rescar.CarModel.Name}}
+                    </option>
+                  </select>
+                </div>
+                <div class="col-md-4 col-xs-4 mrgn-b-lg">
+                  <label>BookingFrom </label>
+
+                  <input type="text" class="form-control" formControlName="BookingFrom" bsDatepicker [minDate]="today"
+                    (bsValueChange)="SetMindate($event)" [datesDisabled]="disabledDates" [bsConfig]="{dateInputFormat: 'YYYY/MM/DD' }" />
+                </div>
+
+                <div class="col-md-4 col-xs-4 mrgn-b-lg">
+                  <label>Booking To </label>
+                  <input type="text" class="form-control" formControlName="BookingTo"
+                    (bsValueChange)="Countdays($event)" [datesDisabled]="disabledDates" bsDatepicker [minDate]="mindate"
+                    [bsConfig]="{dateInputFormat: 'YYYY/MM/DD' }" />
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+
+
+
+
+
+              <div class="col-md-4 col-xs-4 mrgn-b-lg">
+
+                <label>Pickup Location</label>
+
+                <ng-multiselect-dropdown [placeholder]="'Location'" [data]="allLocation" 
+                [settings]="dropdownSettings" [(ngModel)]="selectedItems"  formControlName="PickUpLocationId"
+                (onSelect)="onLocationSelect($event)"  (onDeSelect)="onLocationDeSelect($event)">
+                </ng-multiselect-dropdown>    
+              </div>
+
+
+              <div class="col-md-4 col-xs-4 mrgn-b-lg">
+                <label>BookingAmount </label>
+                <input type="number" class="form-control" placeholder="BookingAmount" formControlName="BookingAmount"
+                  readonly="true"
+                  [ngClass]="RouterFormdata.controls['BookingAmount'].untouched || (RouterFormdata.controls['BookingAmount'].touched && RouterFormdata.controls['BookingAmount'].valid) ? 'valid':'notvalid'" />
+              </div>
+
+              <div class="col-md-4 col-xs-4 mrgn-b-lg">
+                <label>AmountPaid </label>
+                <input type="number" class="form-control" placeholder="BookingAmount" formControlName="AmountPaid" />
+              </div>
+
+
+            </div>
+
+            <div class="row">
+
+              <div class="col-md-4 col-xs-4 mrgn-b-lg">
+                <label> Booking Status</label>
+                <select class="form-control" formControlName="BookedStatusId"
+                  [ngClass]="RouterFormdata.controls['BookedStatusId'].untouched || (RouterFormdata.controls['BookedStatusId'].touched && RouterFormdata.controls['BookedStatusId'].valid) ? 'valid':'notvalid'">
+                  <option *ngFor="let book of allBookingstatus" value="{{book.Id}}">
+                    {{book.Status}}
+                  </option>
+                </select>
+              </div>
+
+              <div class="col-md-4 col-xs-4 mrgn-b-lg">
+                <label> Payment Status</label>
+                <select class="form-control" formControlName="PaymentStatusId"
+                  [ngClass]="RouterFormdata.controls['PaymentStatusId'].untouched || (RouterFormdata.controls['PaymentStatusId'].touched && RouterFormdata.controls['PaymentStatusId'].valid) ? 'valid':'notvalid'">
+                  <option *ngFor="let pay of allPaymentStatus" value="{{pay.Id}}">
+                    {{pay.Status}}
+                  </option>
+                </select>
+              </div>
+
+
+
+            </div>
+
+            <h2> Enter Driver Detail </h2>
+            <div class="row" formGroupName="DriverDetail">
+
+              <div class="col-md-4 col-xs-4 mrgn-b-lg">
+                <label>First Name</label>
+                <input type="Text" class="form-control" placeholder="FirstName" formControlName="FirstName"
+                  [ngClass]="RouterFormdata.controls['DriverDetail']['controls']['FirstName'].untouched || (RouterFormdata.controls['DriverDetail']['controls']['FirstName'].touched && RouterFormdata.controls['DriverDetail']['controls']['FirstName'].valid) ? 'valid':'notvalid'" />
+
+              </div>
+              <div class="col-md-4 col-xs-4 mrgn-b-lg">
+                <label> LastName</label>
+                <input type="Text" class="form-control" placeholder="Last Name" formControlName="LastName"
+                  [ngClass]="RouterFormdata.controls['DriverDetail']['controls']['LastName'].untouched || (RouterFormdata.controls['DriverDetail']['controls']['LastName'].touched && RouterFormdata.controls['DriverDetail']['controls']['LastName'].valid) ? 'valid':'notvalid'" />
+
+
+              </div>
+
+              <div class="col-md-4 col-xs-4 mrgn-b-lg">
+                <label> Eamil </label>
+                <input type="Text" class="form-control" placeholder="Email" formControlName="Email"
+                  [ngClass]="RouterFormdata.controls['DriverDetail']['controls']['Email'].untouched || (RouterFormdata.controls['DriverDetail']['controls']['Email'].touched && RouterFormdata.controls['DriverDetail']['controls']['Email'].valid) ? 'valid':'notvalid'" />
+              </div>
+
+
+
+            </div>
+
+            <div class="row" formGroupName="DriverDetail">
+
+              <div class="col-md-4 col-xs-4 mrgn-b-lg">
+                <label>Phone Number</label>
+                <input type="number" class="form-control" placeholder="Phone Number" formControlName="PhoneNumber" />
+
+              </div>
+              <div class="col-md-4 col-xs-4 mrgn-b-lg">
+                <label> FlightNumber </label>
+                <input type="Text" class="form-control" placeholder="Flight Number" formControlName="FlightNumber" />
+              </div>
+
+
+              <div class="col-md-4 col-xs-12 mrgn-b-lg">
+                <label>&nbsp;</label>
+                <input type="checkbox" formControlName="IsDriverAgeDesired" /> Driver age bitween 20 to 25
+
+
+
+              </div>
+
+
+
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <button *ngIf="Id" class="btn cancel-btn" [routerLink]="['/admin/carregistration']">Cancel</button>
+        <button class="btn add-btn" (click)="onSubmit(RouterFormdata.value)">Add</button>
+      </div>
+    </div>
+  </form>
+</div>

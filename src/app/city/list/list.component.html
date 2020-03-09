@@ -1,0 +1,71 @@
+<div class="prtm-content">
+    <div class="prtm-page-bar">
+      <div class="row">
+        <div class="col-lg-4 col-xs-12">
+          <ul class="breadcrumb">
+            <li class="breadcrumb-item text-capitalize">
+              <h2>City List</h2>
+            </li>
+          </ul>
+        </div>
+        <div class="col-lg-4 col-xs-12 text-center">
+          <select class="form-control" (change)="GetCitiesByCountry($event)">
+            <option value="0">Select Country</option>
+            <option *ngFor="let country of this.allCountries" value="{{country.Id}}">
+              {{country.Name}}
+            </option>
+          </select>
+        </div>
+        <div class="col-lg-4 col-xs-12 text-right">
+          <a [routerLink]='["/admin/city/add"]' class="new-package-btn btn"><i aria-hidden="true" class="fa fa-plus"></i>&nbsp;&nbsp;Add new
+            city</a></div>
+      </div>
+    </div>
+    <div class="table-style">
+      <div class="row">
+        <div class="col-md-12 col-lg-12">
+          <div class="prtm-full-block tables-margin outer-border-none">
+            <div class="prtm-block-content">
+              <div class="table-responsive">
+                <table class="table table-hover light-heading table-bordered-curved prtm-full-block">
+                  <thead class="thead-primary">
+                    <tr>
+                      <th style="width:40%;">city</th>
+                      <th style="width:30%;">country</th>
+                      <th style="width:30%;">actions</th>
+                    </tr>
+                  </thead>
+                </table>
+                <table class="table table-hover light-heading table-bordered-curved prtm-full-block">
+                  <tbody>
+                    <tr *ngFor="let city of this.allcities">
+                      <td style="width:40%;">
+                        <span class="package-name">{{city.Name}}</span>
+                      </td>
+                      <td style="width:30%;">
+                        <span class="package-name" *ngIf="city.Country">{{city.Country.Name}}</span>
+                        <span class="package-name" *ngIf="!city.Country" >{{city.CountryName}}</span>
+  
+                        
+                      </td>
+  
+                      <td style="width:30%" class="action-btns">
+                        <a href="/admin/city/update/{{city.Id}}" class="scnd-action">
+                          <i class="fa fa-pencil"></i>&nbsp;&nbsp;Edit</a>
+                        <a (click)="openConfirmationDialog(city.Id)" class="scnd-action">
+                          <i class="fa fa-trash"></i>&nbsp;&nbsp;Delete</a>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <app-pagination [count]="count" [page]="page" [perPage]="perPage" [pagesToShow]="pagesToShow" [loading]="loading"
+          (goPrev)="prevPage()" (goNext)="nextPage()" (goPage)="goToPage($event)">
+        </app-pagination>
+  
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,94 @@
+<div class="prtm-content">
+    <form [formGroup]="CarRegistration">
+      <div class="table-style">
+        <div class="row">
+          <div class="prtm-page-bar">
+            <div class="col-lg-4 col-xs-12">
+              <ul class="breadcrumb">
+                <li class="breadcrumb-item text-capitalize">
+                  <h2>CarRegistration</h2>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+  
+        <div class="row">
+          <div class="col-md-6 col-xs-6">
+            <div class="prtm-full-block tables-margin outer-border-none">
+              <div class="prtm-block-content">
+                <div class="row">
+                  <div class="col-md-4 col-xs-4 mrgn-b-lg">
+                    <label>Car Type</label>
+                    <select class="form-control" formControlName="CarTypeId" [ngClass]="CarRegistration.controls['CarTypeId'].untouched || (CarRegistration.controls['CarTypeId'].touched && CarRegistration.controls['CarTypeId'].valid) ? 'valid':'notvalid'">
+                      <option *ngFor="let cartype of CarType" value= "{{cartype.Id}}">
+                        {{cartype.Name}}
+                     </option>
+                    </select>
+                  </div>
+                  <div class="col-md-4 col-xs-4 mrgn-b-lg">
+                    <label>Vender Name</label>
+                    <select class="form-control" formControlName="VenderId" 
+                    [ngClass]="CarRegistration.controls['VenderId'].untouched || (CarRegistration.controls['VenderId'].touched && CarRegistration.controls['VenderId'].valid) ? 'valid':'notvalid'">
+                      <option *ngFor="let allvender of AllVender" value= "{{allvender.Id}}">
+                         {{allvender.UserProfile.FirstName}}
+                      </option>
+                    </select>
+                  </div>
+
+                  <div class="col-md-4 col-xs-4 mrgn-b-lg">
+                    <label>Car ModelName</label>
+                    <select class="form-control" formControlName="CarModelId" 
+                    [ngClass]="CarRegistration.controls['CarModelId'].untouched || (CarRegistration.controls['CarModelId'].touched && CarRegistration.controls['CarModelId'].valid) ? 'valid':'notvalid'">
+                      <option *ngFor="let carmodel of CarModel" value= "{{carmodel.Id}}">
+                         {{carmodel.Name}}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="row">
+                   
+
+                      <div class="col-md-4 col-xs-4 mrgn-b-lg">
+                        <label>Plate No</label>
+                        <input type="text" class="form-control" placeholder="Plate Number" formControlName="PlateNo" 
+                        [ngClass]="CarRegistration.controls['PlateNo'].untouched || (CarRegistration.controls['PlateNo'].touched && CarRegistration.controls['PlateNo'].valid) ? 'valid':'notvalid'"/> 
+                      </div>
+
+
+                </div>
+                
+                <div class="row"> 
+                  <div class="col-md-12 col-xs-12 mrgn-b-lg">
+                    <label>CarType Image</label>
+                    
+                    <div class="drop-section">
+
+                      <dropzone  [message]="'Click or drag images here to upload'"  (success)="imageUpload($event)"></dropzone> 
+                      <a class="btn btn-light reset-btn" (click)="resetDropzoneUploads()">Reset</a>
+                  </div>
+        
+                  </div>
+                </div>
+
+                <div class="row" *ngIf="Id!=null">
+                  <div class="col-lg-3 col-xs-12 upload-slider">
+                      <span class="upload-img"><img [src]="UpdateImagePath" /></span>
+                      <span class="upload-cross-btn" (click)="RemoveImages(UpdateImagePath)">X</span>
+                  </div>
+              </div>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+      </div>
+      <div class="row">
+        <div class="col-lg-12">
+          <button *ngIf="Id" class="btn cancel-btn" [routerLink]="['/admin/carregistration']">Cancel</button>
+          <button class="btn add-btn" (click)="onSubmit()">Add</button>
+        </div>
+      </div>
+    </form>
+  </div>

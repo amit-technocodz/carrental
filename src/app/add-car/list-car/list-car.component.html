@@ -1,0 +1,83 @@
+<div class="prtm-content">
+    <div class="prtm-page-bar">
+        <div class="row">
+            <div class="col-lg-4 col-xs-12">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item text-capitalize">
+                        <h2>Car Type List</h2>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- <div class="col-lg-4 col-xs-12 text-center">
+                <form class="navbar-form search-section">
+                    <div class="input-group add-on">
+                        <input class="form-control" placeholder="Type in to search..." name="srch-term" id="srch-term"
+                            [(ngModel)]="Search" type="text" (ngModelChange)="GetAllActivities()">
+                        <div class="input-group-btn">
+                            <button class="btn btn-default" type="submit" (click)="GetAllActivities()"><i
+                                    class="fa fa-search"></i></button>
+                        </div>
+                    </div>
+                </form>
+            </div> -->
+
+            <div class="col-lg-4 col-xs-12 text-right">
+                <a  [routerLink]="['/admin/AddCarType/add']" class="new-package-btn btn"><i
+                        aria-hidden="true" class="fa fa-plus"></i>&nbsp;&nbsp;Add new Car</a>
+
+                <!-- <a *ngIf="RoleId != 1" [routerLink]="['/agency/activity/add']" class="new-package-btn btn"><i
+                        aria-hidden="true" class="fa fa-plus"></i>&nbsp;&nbsp;Add
+                    new activity</a> -->
+            </div>
+        </div>
+    </div>
+    <div class="table-style">
+        <div class="row">
+            <div class="col-md-12 col-lg-12">
+                <div class="prtm-full-block tables-margin outer-border-none">
+                    <div class="prtm-block-content">
+                        <div class="table-responsive">
+                            <table class="table table-hover light-heading table-bordered-curved prtm-full-block">
+                                <thead class="thead-primary">
+                                    <tr>
+                                        <!-- <th style="width:100px;">package Id</th> -->
+                                        <th style="width:20%;">CarType Name</th>
+                                        <th style="width:25%;">CarType Image</th>
+                                        <th style="width:20%;">actions</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                            <table class="table table-hover light-heading table-bordered-curved prtm-full-block">
+                                <tbody>
+                                    <tr *ngFor="let cartype of ListCarType; let i=index">
+                                        <td style="width:20%;" (click)="EditPage(cartype.Id)">
+                                       {{cartype.Name}} 
+                                        </td>
+                                        <td style="width:25%;" (click)="EditPage(cartype.Id)">
+                                      {{cartype.Image}}
+                                        </td>
+                                        <td style="width:20%;" class="action-btns">
+                                            <!-- <a href="#"><i class="fa fa-eye"></i>&nbsp;&nbsp;View</a> -->
+                                            <!-- <a *ngIf="RoleId ==1" [routerLink]="['/admin/activity', activity.Id]"
+                                                class="scnd-action"><i class="fa fa-pencil"></i>&nbsp;&nbsp;Edit</a> -->
+                                            <a  [routerLink]="['/admin/AddCarType/update',cartype .Id]"
+                                                class="scnd-action"><i class="fa fa-pencil"></i>&nbsp;&nbsp;Edit</a>
+                                            <a class="scnd-action" (click)="openConfirmationDialog(cartype.Id)"><i
+                                                    class="fa fa-trash"></i>&nbsp;&nbsp;Delete</a>
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- <app-pagination [count]="count" [page]="page" [perPage]="perPage" [pagesToShow]="pagesToShow" [loading]="loading"
+        (goPrev)="prevPage()" (goNext)="nextPage()" (goPage)="goToPage($event)">
+    </app-pagination> -->
+</div>

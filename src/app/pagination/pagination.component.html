@@ -1,0 +1,12 @@
+<div class="pagination" *ngIf="count > 0">
+
+
+    <span>{{ getMin() }} of {{ getMax() }} of {{ count }} Records</span> &nbsp;
+   
+    <button (click)="onPrev()" [disabled]="page === 1 || loading" [ngClass]="{'prev-btn active': page != 1}">&laquo; pervious </button>
+
+    <button *ngFor="let pageNum of getPages()" (click)="onPage(pageNum)" [class.currentPage]="page==pageNum" >{{pageNum}}</button>
+
+    <button (click)="onNext()" [disabled]="lastPage() || loading" class="next-btn"> next &raquo;</button>
+    <span>{{ totalPages() }} Pages</span>
+  </div>

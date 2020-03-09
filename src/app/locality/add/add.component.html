@@ -1,0 +1,49 @@
+<div class="prtm-content">
+    <form [formGroup]="LocationAddFormGroup">
+      <div class="table-style">
+        <div class="row">
+          <div class="prtm-page-bar">
+            <div class="col-lg-4 col-xs-12">
+              <ul class="breadcrumb">
+                <li class="breadcrumb-item text-capitalize">
+                  <h2>Location details</h2>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+  
+        <div class="row">
+          <div class="col-md-6 col-xs-6">
+            <div class="prtm-full-block tables-margin outer-border-none">
+              <div class="prtm-block-content">
+                <div class="row">
+                  <div class="col-md-12 col-xs-12 mrgn-b-lg" >
+                    <label>Location Name</label>
+                    <input type="text" class="form-control" placeholder="Location name" formControlName="Name" [ngClass]="LocationAddFormGroup.controls['Name'].untouched || (LocationAddFormGroup.controls['Name'].touched && LocationAddFormGroup.controls['Name'].valid) ? 'valid':'notvalid'"/>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12 col-xs-12 mrgn-b-lg" >
+                    <label>City</label>
+                    <select class="form-control" formControlName="CityId" [ngClass]="LocationAddFormGroup.controls['CityId'].untouched || (LocationAddFormGroup.controls['CityId'].touched && LocationAddFormGroup.controls['CityId'].valid) ? 'valid':'notvalid'">
+                      <option *ngFor="let city of allcity" value= "{{city.Id}}">
+                         {{city.Name}}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+      </div>
+      <div class="row">
+        <div class="col-lg-12">
+          <button class="btn cancel-btn" [routerLink]="['/admin/locality']">Cancel</button>
+          <button class="btn add-btn" (click)="Submit(LocationAddFormGroup.value)">Add</button>
+        </div>
+      </div>
+    </form>
+  </div>

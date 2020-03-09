@@ -1,0 +1,70 @@
+<div class="prtm-content">
+    <div class="prtm-page-bar">
+      <div class="row">
+        <div class="col-lg-4 col-xs-12">
+          <ul class="breadcrumb">
+            <li class="breadcrumb-item text-capitalize">
+              <h2>Country List</h2>
+            </li>
+          </ul>
+        </div>
+        <div class="col-lg-4 col-xs-12 text-center">
+          <form class="navbar-form search-section">
+            <div class="input-group add-on">
+              <input class="form-control" placeholder="Type in to search..." name="srch-term" id="srch-term" [(ngModel)]="Search" type="text" (ngModelChange)="GetAllCountries()">
+              <div class="input-group-btn">
+                <button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="col-lg-4 col-xs-12 text-right">
+          <a [routerLink]="['/admin/country/add']" class="new-package-btn btn"><i aria-hidden="true" class="fa fa-plus"></i>&nbsp;&nbsp;Add new
+            country</a></div>
+      </div>
+    </div>
+    <div class="table-style">
+      <div class="row">
+        <div class="col-md-12 col-lg-12">
+          <div class="prtm-full-block tables-margin outer-border-none">
+            <div class="prtm-block-content">
+              <div class="table-responsive">
+                <table class="table table-hover light-heading table-bordered-curved prtm-full-block">
+                  <thead class="thead-primary">
+                    <tr>
+                      <th style="width:40%;">country name</th>
+                      <th style="width:20%;">country code</th>
+                      <th style="width:40%;">actions</th>
+                    </tr>
+                  </thead>
+                </table>
+                <table class="table table-hover light-heading table-bordered-curved prtm-full-block">
+                  <tbody>
+                    <tr *ngFor="let country of this.allCountries">
+                      <td style="width:40%;">
+                        <span class="package-name">{{country.Name}}</span>
+                      </td>
+                      <td style="width:20%;">
+                        <button class="btn btn-rounded btn-primary">{{country.CountryCode}}</button>
+                      </td>
+  
+                      <td style="width:40%;" class="action-btns">
+                        <a href="/admin/country/update/{{country.Id}}" class="scnd-action">
+                          <i class="fa fa-pencil"></i>&nbsp;&nbsp;Edit</a>
+                        <a (click)="openConfirmationDialog(country.Id)" class="scnd-action">
+                          <i class="fa fa-trash"></i>&nbsp;&nbsp;Delete</a>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <app-pagination [count]="count" [page]="page" [perPage]="perPage" [pagesToShow]="pagesToShow" [loading]="loading"
+          (goPrev)="prevPage()" (goNext)="nextPage()" (goPage)="goToPage($event)">
+        </app-pagination>
+  
+      </div>
+    </div>
+  </div>

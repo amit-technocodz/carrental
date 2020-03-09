@@ -1,0 +1,67 @@
+<div class="prtm-content">
+    <div class="prtm-page-bar">
+      <div class="row">
+        <div class="col-lg-4 col-xs-12">
+          <ul class="breadcrumb">
+            <li class="breadcrumb-item text-capitalize">
+              <h2> Rental Car List</h2>
+            </li>
+          </ul>
+        </div>
+        <div class="col-lg-4 col-xs-12 text-right">
+          <a [routerLink]='["/admin/carrental/add"]' class="new-package-btn btn"><i aria-hidden="true" class="fa fa-plus"></i>&nbsp;&nbsp; Rental Car</a></div>
+      </div>
+    </div>
+    <div class="table-style">
+      <div class="row">
+        <div class="col-md-12 col-lg-12">
+          <div class="prtm-full-block tables-margin outer-border-none">
+            <div class="prtm-block-content">
+              <div class="table-responsive">
+                <table class="table table-hover light-heading table-bordered-curved prtm-full-block">
+                  <thead class="thead-primary">
+                    <tr>
+                      <th style="width:20%;">Register Car</th>
+                      <th style="width:20%;">Booking Ammount</th>
+                      <th style="width:15%;">Payment Status</th>
+                      <th style="width:15%;">Booking Status</th>
+                      <th style="width:30%;">actions</th>
+                    </tr>
+                  </thead>
+                </table>
+                <table class="table table-hover light-heading table-bordered-curved prtm-full-block">
+                  <tbody>
+                    <tr *ngFor="let res of RentalCarData">
+                      <td style="width:20%;">
+                        <span class="package-name">{{res.CarRegistration.CarModel.Name}}</span>
+                      </td>
+                      <td style="width:20%;">
+                        <span class="package-name"  >{{res.BookingAmount}}</span>
+                       </td>
+                      <td style="width:15%;">
+                         <span class="package-name"  >{{res.PaymentStatus.Status}}</span>
+                      </td>
+                      <td style="width:15%;">
+                        <span class="package-name"  >{{res.BookingStatus.Status}}</span>
+                      </td>
+  
+                      <td style="width:30%" class="action-btns">
+                        <a [routerLink]="['/admin/carrental/update',res.Id]" class="scnd-action">
+                          <i class="fa fa-pencil"></i>&nbsp;&nbsp;Edit</a>
+                        <a (click)="openConfirmationDialog(res.Id)" class="scnd-action">
+                          <i class="fa fa-trash"></i>&nbsp;&nbsp;Delete</a>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <app-pagination [count]="count" [page]="page" [perPage]="perPage" [pagesToShow]="pagesToShow" [loading]="loading"
+          (goPrev)="prevPage()" (goNext)="nextPage()" (goPage)="goToPage($event)">
+        </app-pagination>
+  
+      </div>
+    </div>
+  </div>

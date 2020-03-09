@@ -1,0 +1,77 @@
+<div class="prtm-content">
+    <form [formGroup]="CarmodelAddFormGroup">
+      <div class="table-style">
+        <div class="row">
+          <div class="prtm-page-bar">
+            <div class="col-lg-4 col-xs-12">
+              <ul class="breadcrumb">
+                <li class="breadcrumb-item text-capitalize">
+                  <h2>Update  CarModel </h2>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+  
+        <div class="row">
+          <div class="col-md-10 col-xs-10">
+            <div class="prtm-full-block tables-margin outer-border-none">
+              <div class="prtm-block-content">
+                <div class="row">
+                  <div class="col-md-4 col-xs-4 mrgn-b-lg" >
+                    <label>Name</label>
+                    <input type="text" class="form-control" placeholder="CarModal Name" formControlName="Name" [ngClass]="CarmodelAddFormGroup.controls['Name'].untouched || (CarmodelAddFormGroup.controls['Name'].touched && CarmodelAddFormGroup.controls['Name'].valid) ? 'valid':'notvalid'"/>
+                  </div>
+                  <div class="col-md-4 col-xs-4 mrgn-b-lg" >
+                    <label>CarMake</label>
+                    <select class="form-control" formControlName="CarMakeId" [ngClass]="CarmodelAddFormGroup.controls['CarMakeId'].untouched || (CarmodelAddFormGroup.controls['CarMakeId'].touched && CarmodelAddFormGroup.controls['CarMakeId'].valid) ? 'valid':'notvalid'">
+                      <option *ngFor="let carmake of allcarmake" value= "{{carmake.Id}}">
+                         {{carmake.Name}}
+                      </option>
+                    </select>
+       
+                  </div>
+                  <div class="col-md-4 col-xs-4 mrgn-b-lg" >
+                    <label>Capacity</label>
+                    <input type="number" class="form-control" placeholder="Capacity" formControlName="Capacity" [ngClass]="CarmodelAddFormGroup.controls['Capacity'].untouched || (CarmodelAddFormGroup.controls['Capacity'].touched && CarmodelAddFormGroup.controls['Capacity'].valid) ? 'valid':'notvalid'"/>
+                  </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 col-xs-4 mrgn-b-lg" >
+                        <label>Doors</label>
+                        <input type="number" class="form-control" placeholder="Doors" formControlName="Doors" [ngClass]="CarmodelAddFormGroup.controls['Doors'].untouched || (CarmodelAddFormGroup.controls['Doors'].touched && CarmodelAddFormGroup.controls['Doors'].valid) ? 'valid':'notvalid'"/>
+                      </div>
+                      <div class="col-md-4 col-xs-4 mrgn-b-lg" >
+                        <label>Tranmission Type</label>
+                        <select class="form-control" formControlName="TransmissionType" [ngClass]="CarmodelAddFormGroup.controls['TransmissionType'].untouched || (CarmodelAddFormGroup.controls['TransmissionType'].touched && CarmodelAddFormGroup.controls['TransmissionType'].valid) ? 'valid':'notvalid'">
+                          <option *ngFor="let trans of alltransmission" value= "{{trans.Id}}">
+                             {{trans.Name}}
+                          </option>
+                        </select>
+           
+                      </div>
+                      <div class="col-md-4 col-xs-4 mrgn-b-lg" >
+                        <label>Big Luggage</label>
+                        <input type="number" class="form-control" placeholder="Big Luggage" formControlName="BigPieceLuggage" />
+                      </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 col-xs-4 mrgn-b-lg" >
+                        <label>Small Luggage</label>
+                        <input type="number" class="form-control" placeholder="Small Luggage" formControlName="SmallPieceLuggage"/>
+                      </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+      </div>
+      <div class="row">
+        <div class="col-lg-12">
+          <button class="btn cancel-btn" [routerLink]="['/admin/carmodel']">Cancel</button>
+          <button class="btn add-btn" (click)="Submit(CarmodelAddFormGroup.value)">Add</button>
+        </div>
+      </div>
+    </form>
+  </div>

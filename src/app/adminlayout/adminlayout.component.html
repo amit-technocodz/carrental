@@ -1,0 +1,221 @@
+<div class="prtm-wrapper">
+    <header class="prtm-header">
+        <nav class="navbar navbar-default">
+            <div class="container-fluid no-padding">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                        aria-expanded="false" aria-controls="navbar"> <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span><span class="icon-bar"></span> <span class="icon-bar"></span>
+                    </button>
+                    <button class="c-hamburger c-hamburger--htra prtm-bars pull-right hidden-lg hidden-md hidden-sm">
+                        <span>toggle menu</span> </button>
+                    <div class="prtm-logo">
+                        <a class="navbar-brand" [routerLink]="['/']"><img class="img-responsive display-ib"
+                                src="assets/img/logo.png" alt="logo" width="226" height="31"></a>
+                    </div>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse" data-hover="dropdown">
+                        <div class="header-title-bar"><h4>{{Title}}</h4></div>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="dropdown">
+                                <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                    aria-haspopup="true" aria-expanded="false"><i class="fa fa-bell-o"> </i><span
+                                        class="badge badge-danger">2</span></a>
+                                <ul class="dropdown-menu dropdown-custom dropdown-notifi">
+                                    <li> <strong class="drop-title"><span><i class="fa fa-bell-o"
+                                                    aria-hidden="true"></i></span>Notifications</strong><a
+                                            href="javascript:;" class="pull-right bg-primary base-reverse">Marks As Read</a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:;" class="pos-relative">
+                                            <div class="mrgn-b-xs"> <span class="notification-icon"><i
+                                                        class="fa fa-database text-danger"></i></span> <span
+                                                    class="notification-title">Database overload</span> <span
+                                                    class="notification-ago">3 min ago</span> </div>
+                                            <p class="mrgn-all-none">Database overload due to incorrect queries</p>
+                                            <div class="clearfix"></div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                    aria-haspopup="true" aria-expanded="false"><i class="fa fa-envelope-o"></i><span
+                                        class="badge badge-danger">5</span></a>
+                                <ul class="dropdown-menu dropdown-custom">
+                                    <li> <strong class="drop-title">You have 5 new messages</strong> </li>
+                                    <li>
+                                        <a href="javascript:;">
+                                            <div class="user-thumb pull-left"><img class="img-responsive img-circle"
+                                                    src="assets/img/user.jpg" alt="User-image" width="64" height="64"> <span
+                                                    class="profile-status online pull-right"></span> </div>
+                                            <div class="user-content pull-left">
+                                                <h6 class="mrgn-all-none">Marya Kale</h6>
+                                                <p class="mrgn-b-xs">Just see the my admin!</p> <span>9:30 AM</span> <span
+                                                    class="notification-ago">30 min ago</span>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                    aria-haspopup="true" aria-expanded="false">
+                                    <img *ngIf="imagePath" class="img-responsive display-ib mrgn-l-sm img-circle" [src]="imagePath"
+                                        width="64" height="64">
+                                        <img *ngIf="!imagePath" class="img-responsive display-ib mrgn-l-sm img-circle" src="assets/img/default-user.png"
+                                        width="64" height="64" alt="User-image">
+                                        <span class="caret"></span>
+                                    </a>
+                                <ul class="dropdown-menu">
+                                    <li><a [routerLink]="['/user/profile']"><i class="fa fa-user"></i> My Profile</a></li>
+                                    <li><a href="#"><i class="fa fa-money"></i> My Contact</a></li>
+                                    <li><a href="#" class="pos-relative"><i class="fa fa-inbox"></i> My Inbox <span
+                                                class="badge badge-danger pull-right profile-badge">2</span></a></li>
+                                    <li><a href="#" class="pos-relative"><i class="fa fa-tasks"></i> My task
+                                            <span class="badge badge-success pull-right profile-badge">5</span></a></li>
+                                    <li><a href="user-settings.html"><i class="fa fa-cog"></i> Account Setting</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a (click)="Logout()"><i class="fa fa-power-off"></i>Logout</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    
+                </div>
+                <!--/.nav-collapse -->
+            </div>
+        </nav>
+    </header>
+    <div class="prtm-main">
+        <div class="prtm-sidebar">
+            <div class="prtm-sidebar-back"> </div>
+            <div class="prtm-sidebar-nav-wrapper">
+                <div class="scroll_text">
+                    <div class="prtm-sidebar-menu">
+                        <nav class="sidebar-nav collapse">
+                            <ul class="list-unstyled sidebar-menu">
+                                <li (click)="AddClass(1,'Dashboard')" [ngClass]="{'active': selectedIndex == 1}">
+                                    <a [routerLink]="['/admin/deshboard']">
+                                        <i class="fa fa-qrcode" aria-hidden="true"></i>
+                                        <span>Dashboard</span></a>
+                                </li>
+                                <li (click)="AddClass(2,'CarType')" [ngClass]="{'active': selectedIndex == 2}"> 
+                                    <a [routerLink]="['/admin/AddCarType']">
+                                        <i class="fa fa-users" aria-hidden="true"></i><span>Car Type</span></a>
+                                </li>
+
+                                <li (click)="AddClass(3,'Country')" [ngClass]="{'active': selectedIndex == 3}">
+                                    <a [routerLink]="['/admin/country']"><i class="fa fa-globe" aria-hidden="true"></i><span>Country</span></a>
+                                </li>
+                                <li (click)="AddClass(4,'City')" [ngClass]="{'active': selectedIndex == 4}">
+                                    <a [routerLink]="['/admin/city']"><i class="fa fa-map-marker" aria-hidden="true"></i><span>City</span></a>
+                                </li>
+
+                                <li (click)="AddClass(5,'location')" [ngClass]="{'active': selectedIndex == 5}">
+                                    <a [routerLink]="['/admin/locality']"><i class="fa fa-map-marker" aria-hidden="true"></i><span>Location</span></a>
+                                </li>
+                                <li (click)="AddClass(6,'carmake')" [ngClass]="{'active': selectedIndex == 6}">
+                                    <a [routerLink]="['/admin/carmake']"><i class="fa fa-plane" aria-hidden="true"></i><span>CarMake</span></a>
+                                </li>
+                                <li (click)="AddClass(7,'carmodel')"  [ngClass]="{'active': selectedIndex == 7}">
+                                    <a [routerLink]="['/admin/carmodel']"><i class="fa fa-first-order" aria-hidden="true"></i><span>CarModel</span></a>
+                                </li>
+                                <li (click)="AddClass(8,'carregistration')" id="Agency" [ngClass]="{'active': selectedIndex == 8}">
+                                    <a [routerLink]="['/admin/carregistration']"><i class="fa fa-first-order" aria-hidden="true"></i><span>Car-Registration</span></a>
+                                </li>
+                                <li (click)="AddClass(9,'carrentalprice')" id="Agency" [ngClass]="{'active': selectedIndex == 9}">
+                                    <a [routerLink]="['/admin/carrentalprice']"><i class="fa fa-first-order" aria-hidden="true"></i><span>CarRental-Price</span></a>
+                                </li>
+                                <li (click)="AddClass(10,'carrentalprice')" id="Agency" [ngClass]="{'active': selectedIndex == 9}">
+                                    <a [routerLink]="['/admin/carrental']"><i class="fa fa-first-order" aria-hidden="true"></i><span>Car Rental</span></a>
+                                </li>
+                                <li (click)="AddClass(11,'carrentalprice')" id="Agency" [ngClass]="{'active': selectedIndex == 9}">
+                                    <a [routerLink]="['/admin/caravailability']"><i class="fa fa-first-order" aria-hidden="true"></i><span>Car Availability</span></a>
+                                </li>
+                                
+                                
+
+<!-- 
+                              <li (click)="AddClass(4,'Agency')" id="Agency" [ngClass]="{'active': selectedIndex == 4}">
+                                    <a [routerLink]="['/admin/agency']"><i class="fa fa-first-order" aria-hidden="true"></i><span>Agency</span></a>
+                                </li>
+                                <li (click)="AddClass(5,'Booking')" [ngClass]="{'active': selectedIndex == 5}">
+                                    <a [routerLink]="['/admin/checkout']"><i class="fa fa-calendar-minus-o" aria-hidden="true"></i><span>Booking</span></a>
+                                </li>
+                                <li (click)="AddClass(6,'Hotel')" [ngClass]="{'active': selectedIndex == 6}">
+                                    <a [routerLink]="['/admin/hotel']"><i class="fa fa-hotel"
+                                            aria-hidden="true"></i><span>Hotel</span></a>
+                                </li>
+                                <li (click)="AddClass(7,'Activity')" [ngClass]="{'active': selectedIndex == 7}">
+                                    <a [routerLink]="['/admin/activity']"><i class="fa fa-birthday-cake" aria-hidden="true"></i><span>Activity</span></a>
+                                </li>
+                                <li (click)="AddClass(8,'Service')" [ngClass]="{'active': selectedIndex == 8}">
+                                    <a [routerLink]="['/admin/service']"><i class="fa fa-list-ol" aria-hidden="true"></i><span>Service</span></a>
+                                </li>
+                                <li (click)="AddClass(9,'Country')" [ngClass]="{'active': selectedIndex == 9}">
+                                    <a [routerLink]="['/admin/country']"><i class="fa fa-globe" aria-hidden="true"></i><span>Country</span></a>
+                                </li>
+                                <li (click)="AddClass(10,'City')" [ngClass]="{'active': selectedIndex == 10}">
+                                    <a [routerLink]="['/admin/city']"><i class="fa fa-map-marker" aria-hidden="true"></i><span>City</span></a>
+                                </li>
+
+                              <li>
+                                    <a [routerLink]="['/admin/amenity']"><i class="fa fa-server"
+                                            aria-hidden="true"></i><span>Amenity</span></a>
+                                </li>
+                                <li>
+                                    <a [routerLink]="['/admin/room']"><i class="fa fa-users"
+                                            aria-hidden="true"></i><span>Room Type</span></a>
+                                </li> 
+                                <li (click)="AddClass(11,'Package Category')" [ngClass]="{'active': selectedIndex == 11}">
+                                    <a [routerLink]="['/admin/packagecategory']"><i class="fa fa-th-list" aria-hidden="true"></i><span>Package Category</span></a>
+                                </li>
+                                <li (click)="AddClass(12,'Activity Category')" [ngClass]="{'active': selectedIndex == 12}">
+                                    <a [routerLink]="['/admin/activitycategory']"><i class="fa fa-sliders" aria-hidden="true"></i><span>Activity Category</span></a>
+                                </li>
+                                <li (click)="AddClass(13,'Activity Include')" [ngClass]="{'active': selectedIndex == 13}">
+                                    <a [routerLink]="['/admin/activityinclude']"><i class="fa fa-sort-alpha-asc" aria-hidden="true"></i><span>Activity Include</span></a>
+                                </li>
+                                <li (click)="AddClass(14,'Facility')" [ngClass]="{'active': selectedIndex == 14}">
+                                    <a [routerLink]="['/admin/facility']"><i class="fa fa-bath" aria-hidden="true"></i><span>Facility</span></a>
+                                </li>
+                                <li (click)="AddClass(15,'Mealplan')" [ngClass]="{'active': selectedIndex == 15}">
+                                    <a [routerLink]="['/admin/mealplan']"><i class="fa fa-cutlery" aria-hidden="true"></i><span>Mealplan</span></a>
+                                </li>
+                                <li (click)="AddClass(16,'CustomTrip')" [ngClass]="{'active': selectedIndex == 16}">
+                                    <a [routerLink]="['/admin/customtrip/list']"><i class="fa fa-plane" aria-hidden="true"></i><span>Custom Trip</span></a>
+                                </li>
+                            </ul>
+
+                            <ul class="list-unstyled sidebar-menu bottom-fixed">
+                                <li>
+                                    <a href="javascript:void(0)"><i class="fa fa-cog" aria-hidden="true"></i><span>Settings</span></a>
+                                </li>
+                                <li>
+                                    <a (click)="Logout()"><i class="fa fa-sign-out" aria-hidden="true"></i><span>Logout</span></a>
+                                </li> --> 
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="prtm-content-wrapper">
+            <router-outlet></router-outlet>
+            <footer class="footer-wrapper">
+                <div class="prtm-footer clearfix">
+                    <div class="row footer-area pad-lr-md">
+                        <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+                            <p>Copyright 2019 Trippat | All Rights Reserved</p>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 text-right">
+                            <a [routerLink]="['/']"><img class="footer-logo" src="assets/img/footer-logo.png" alt="footer logo"></a>
+                        </div>
+                    </div>
+                </div>
+                <!-- <a href="javascript:void(0)" id="back-top" class="to-top scrolled"> <span class="to-top-icon"></span> </a> -->
+            </footer>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,165 @@
+<div class="container">
+    <div class="login-box">
+      <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-12">
+          <ul class="nav nav-tabs">
+            <li (click)="tab(1)" [ngClass]="{'active':TabId==='1'}"> <a data-toggle="tab" > Login</a> </li>
+            <li (click)="tab(2)" [ngClass]="{'active':TabId==='2'}"> <a data-toggle="tab" >Sign up</a> </li>
+          </ul>
+          <div class="tab-content pad-all-lg">
+            <div id="tab-23" class="tab-pane fade in" [ngClass]="{'active':TabId==='1'}">
+              <form [formGroup]="loginForm" autocomplete="off">
+                <div class="row">
+                  <div class="col-sm-12 col-md-12 col-lg-12 mrgn-b-lg">
+                    <span class="input-box">
+                      <label>Email Address</label>
+                      <div class="inner-addon right-addon">
+                        <i class="fa fa-envelope-o" aria-hidden="true"></i>
+                        <input type="email" class="form-control email-login" formControlName="Email"  placeholder="Write your e-mail"
+                         [ngClass]="loginForm.controls['Email'].untouched || (loginForm.controls['Email'].touched && loginForm.controls['Email'].valid) ? 'valid':'notvalid'" /> 
+                      </div>
+  
+                    </span>
+                  </div>
+                </div> 
+  
+                <div class="row">
+                  <div class="col-sm-12 col-md-12 col-lg-12 mrgn-b-lg">
+                    <span class="input-box">
+                      <label>Password</label>
+                      <div class="inner-addon right-addon">
+                        <i class="fas fa-unlock-alt"></i> 
+                        <input type="password" class="form-control email-password" formControlName="Password" placeholder="Write your Password"
+                   [ngClass]="loginForm.controls['Password'].untouched || (loginForm.controls['Password'].touched && loginForm.controls['Password'].valid) ? 'valid':'notvalid'" /> 
+                      </div>
+  
+                    </span>
+                  </div>
+                </div>
+  
+                <div class="row">
+                  <div class="col-sm-6 col-md-6 col-lg-6 mrgn-b-lg">
+                    <input type="checkbox" /> <span class="remember-me">Remember me</span>
+                  </div>
+                  <div class="col-sm-6 col-md-6 col-lg-6 forgot-password mrgn-b-lg text-right"><a>Forgot password</a> </div>
+                </div>
+  
+                <div class="row">
+                  <div class="col-sm-12 col-md-12 col-lg-12 text-center mrgn-b-lg">
+                    <button type="button" class="btn login-btn" (click)="Login(loginForm.value)">
+                      Login
+                    </button>
+                  </div>
+                  <!-- <div class="col-sm-12 col-md-12 col-lg-12 text-center or-login mrgn-b-lg">
+                    {{ 'Or login with:' | translate }}
+                  </div>
+                  <div class="col-sm-12 col-md-12 col-lg-12 text-center with-social mrgn-b-lg">
+                    <span class="fb-login" (click)="signInWithFB()"><img src="assets/img/fb-login.png" /></span>
+                    <span class="google-login" (click)="signInWithGoogle()"><img
+                        src="assets/img/gmail-login.png" /></span>
+                  </div> -->
+                </div>
+              </form>
+            </div>
+  
+             <!---------SIGN Up FORM--------->
+          <div  class="tab-pane fade in " [ngClass]="{'active':TabId==='2'}" >
+            <form [formGroup]="registerForm">
+              <div class="row" formGroupName="UserProfile">
+                <div class="col-sm-12 col-md-12 col-lg-12 mrgn-b-lg">
+                  <span class="input-box">
+                    <label> First Name</label>
+                    <div class="inner-addon right-addon">
+                      <i class="far fa-user"></i>
+                      <input type="text" class="form-control first-name" formControlName="FirstName"
+                        placeholder="Write your first name"
+                        [ngClass]="registerForm.controls['UserProfile']['controls']['FirstName'].untouched || (registerForm.controls['UserProfile']['controls']['FirstName'].touched && registerForm.controls['UserProfile']['controls']['FirstName'].valid) ? 'valid':'notvalid'" /> 
+                    </div>
+                  </span>
+                </div>
+              </div>
+              <div class="row" formGroupName="UserProfile">
+                <div class="col-sm-12 col-md-12 col-lg-12 mrgn-b-lg">
+                  <span class="input-box">
+                    <label>Last Name</label>
+                    <div class="inner-addon right-addon">
+                      <i class="far fa-user"></i>
+                      <input type="text" class="form-control email-login" formControlName="LastName"
+                        placeholder="Write your last name"
+                     [ngClass]="registerForm.controls['UserProfile']['controls']['LastName'].untouched || (registerForm.controls['UserProfile']['controls']['LastName'].touched && registerForm.controls['UserProfile']['controls']['LastName'].valid) ? 'valid':'notvalid'" /> 
+                    </div>
+                  </span>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-12 col-md-12 col-lg-12 mrgn-b-lg">
+                  <span class="input-box">
+                    <label>Email address</label>
+                    <div class="inner-addon right-addon">
+                      <i class="fa fa-envelope-o" aria-hidden="true"></i>
+                      <input type="email" class="form-control email-login" formControlName="Email"
+                        placeholder="Write your e-mail"  autocomplete="false"
+                    [ngClass]="registerForm.controls['Email'].untouched || (registerForm.controls['Email'].touched && registerForm.controls['Email'].valid) ? 'valid':'notvalid'" /> 
+                    </div>
+                  </span>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-12 col-md-12 col-lg-12 mrgn-b-lg">
+                  <span class="input-box">
+                    <label>Password</label>
+                    <div class="inner-addon right-addon">
+                      <i class="fas fa-unlock-alt"></i>
+                      <input type="password" class="form-control email-password" formControlName="Password"
+                        placeholder="Write your Password" autocomplete="false"
+                  [ngClass]="registerForm.controls['Password'].untouched || (registerForm.controls['Password'].touched && registerForm.controls['Password'].valid) ? 'valid':'notvalid'" /> 
+                    </div>
+                  </span>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-12 col-md-12 col-lg-12 mrgn-b-lg">
+                  <span class="input-box">
+                    <label>Confirm Password</label>
+                    <div class="inner-addon right-addon">
+                      <i class="fas fa-unlock-alt"></i>
+                      <input type="password" class="form-control email-password" formControlName="ConfirmPassword"
+                        placeholder="Confirm Password "
+                  [ngClass]="registerForm.controls['ConfirmPassword'].untouched || (registerForm.controls['ConfirmPassword'].touched && registerForm.controls['ConfirmPassword'].valid) ? 'valid':'notvalid'" />
+                    </div>
+                  </span>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-6 col-md-6 col-lg-6 mrgn-b-lg">
+                </div>
+                <div class="col-sm-6 col-md-6 col-lg-6 mrgn-b-lg text-right">
+                  <input type="checkbox" formControlName="IsTermAccepted" />
+                  <!-- <a  class="remember-me" style="color:#9fcde6" [routerLink]="['/termandcondition']">{{ 'Accept terms and condition' | translate }}</a> -->
+                  <!-- <span class="remember-me" [routerLink]="['/termandcondition']">{{ 'Accept terms and condition' | translate }}</span> -->
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-12 col-md-12 col-lg-12 text-center mrgn-b-lg">
+                  <button type="button" (click)="Register(registerForm.value)"
+                    class="btn login-btn signup-button">Sign up</button>
+                </div>
+                <div class="col-sm-12 col-md-12 col-lg-12 text-center or-login mrgn-b-lg">
+                  Or sign up with
+                </div>
+                <div class="col-sm-12 col-md-12 col-lg-12 text-center with-social mrgn-b-lg">
+                  <span class="fb-login"><img src="assets/img/fb-login.png" /></span>
+                  <span class="google-login"><img src="assets/img/gmail-login.png" /></span>
+                </div>
+              </div>
+            </form>
+          </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
